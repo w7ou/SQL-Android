@@ -99,7 +99,7 @@ public class MainActivity extends AppCompatActivity {
                             String number = rs.getString("學號");
                             String name = rs.getString("姓名");
                             String email = rs.getString("電子郵件");
-                            dataSource.add("姓名: "+name+" 學號: "+number+" 電子郵件: "+email);
+                            dataSource.add("學號: " + number + " 姓名: " + name + " 電子郵件: " + email);
                         }
                         arrayAdapter.notifyDataSetChanged();
                     }
@@ -140,7 +140,7 @@ public class MainActivity extends AppCompatActivity {
                                 String name = rs.getString("姓名");
                                 String number = rs.getString("學號");
                                 String email = rs.getString("電子郵件");
-                                dataSource.add("姓名: " + name + " 學號: " + number+ " 電子郵件: " + email);
+                                dataSource.add("學號: " + number + " 姓名: " + name + " 電子郵件: " + email);
                             }
 
                             dataSource.clear();
@@ -149,7 +149,7 @@ public class MainActivity extends AppCompatActivity {
                                 String name = NAMErs.getString("姓名");
                                 String number = NAMErs.getString("學號");
                                 String email = NAMErs.getString("電子郵件");
-                                dataSource.add("姓名: " + name + " 學號: " + number+ " 電子郵件: " + email);
+                                dataSource.add("學號: " + number + " 姓名: " + name + " 電子郵件: " + email);
                             }
 
                             dataSource.clear();
@@ -158,7 +158,7 @@ public class MainActivity extends AppCompatActivity {
                                 String name = Ers.getString("姓名");
                                 String number = Ers.getString("學號");
                                 String email = Ers.getString("電子郵件");
-                                dataSource.add("姓名: " + name + " 學號: " + number+ " 電子郵件: " + email);
+                                dataSource.add("學號: " + number + " 姓名: " + name + " 電子郵件: " + email);
                             }
                             arrayAdapter.notifyDataSetChanged();
                         }
@@ -176,16 +176,18 @@ public class MainActivity extends AppCompatActivity {
 
     public class OnItemClickHandler implements AdapterView.OnItemClickListener {
         public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
-                String clickedItem = dataSource.get(position);
-                String[] parts = clickedItem.split("學號:|電子郵件:");
-                String name = parts[0].replace("姓名:", "").trim();
+            String clickedItem = dataSource.get(position);
+            String[] parts = clickedItem.split("學號:|姓名:|電子郵件:");
+            if (parts.length >= 3) {
                 String number = parts[1].trim();
-                String email = parts[2].trim();
+                String name = parts[2].trim();
+                String email = parts[3].trim();
+
                 id_editText.setText(number);
                 name_editText.setText(name);
                 email_editText.setText(email);
             }
-
+        }
     }
 
 
